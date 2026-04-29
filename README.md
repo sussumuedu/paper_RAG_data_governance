@@ -64,36 +64,3 @@ Global preference judgments were analyzed using a multinomial logistic model to 
 
 The analysis considered both the direction and magnitude of estimated effects, as well as statistical uncertainty.
 
-## Repository Structure
-
-The repository is organized as follows:
-
-```text
-.
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── evaluation/
-│
-├── prompts/
-│   ├── question_generation/
-│   ├── rag_enabled/
-│   ├── rag_disabled/
-│   └── llm_judge/
-│
-├── rag_pipeline/
-│   ├── ingestion/
-│   ├── retrieval/
-│   └── generation/
-│
-├── analysis/
-│   ├── descriptive_analysis/
-│   ├── ordinal_models/
-│   ├── preference_models/
-│   └── agreement_analysis/
-│
-├── figures/
-│
-├── manuscript/
-│
-└── README.md
