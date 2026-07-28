@@ -1,66 +1,116 @@
-# paper_RAG_data_governance
-Research artifacts for evaluating the impact of Retrieval-Augmented Generation on response quality in health data governance.
+# Artigo 1574318 – Inteligência artificial generativa na governança de dados em saúde: estudo comparativo com recuperação documental
+XXI Congresso Brasileiro de Informática em Saúde – CBIS’26
+23 a 25 de setembro de 2026 - Brasília/DF - Brasil
 
-# Evaluating Retrieval-Augmented Generation for Health Data Governance
+Artefatos de pesquisa utilizados na avaliação do impacto da Retrieval-Augmented Generation na qualidade de respostas sobre governança de dados em saúde.
 
-This repository contains research artifacts related to a comparative study evaluating the use of Retrieval-Augmented Generation (RAG) in the domain of health data governance.
+# Avaliação de Retrieval-Augmented Generation para Governança de Dados em Saúde
 
-The study investigates whether a RAG-based architecture improves the perceived quality of responses when compared with responses generated without retrieval support. The evaluation focuses on a specialized domain in which answers must be accurate, complete, contextually appropriate, useful, and clear for health data governance tasks.
+Este repositório contém os artefatos de uma pesquisa comparativa sobre o uso de Retrieval-Augmented Generation (RAG) no domínio da governança de dados em saúde.
 
-## Study Overview
+O estudo investiga se uma arquitetura baseada em RAG melhora a qualidade percebida das respostas quando comparada à geração sem recuperação documental. A avaliação considera um domínio especializado, no qual as respostas precisam ser corretas, completas, aderentes às fontes, úteis e claras.
 
-Large Language Models (LLMs) have shown potential for supporting information retrieval, synthesis, and interpretation in healthcare-related domains. However, their use in specialized and regulatory contexts remains challenging due to risks such as hallucination, incomplete contextualization, and limited alignment with domain-specific documents.
+## Contexto do estudo
 
-Retrieval-Augmented Generation (RAG) has been proposed as a strategy to mitigate these limitations by combining LLM generation with semantic retrieval from external document collections. In this study, we evaluate whether RAG adds practical value to responses related to health data governance.
+Large Language Models (LLMs) apresentam potencial para apoiar a recuperação, síntese e interpretação de informações em saúde. Entretanto, seu uso em contextos especializados e regulatórios envolve riscos como alucinação, contextualização incompleta e desalinhamento com documentos específicos do domínio.
 
-## Objective
+A abordagem RAG busca reduzir essas limitações ao combinar a geração de respostas por LLMs com a recuperação semântica de informações em uma coleção documental externa. Neste estudo, avaliamos se essa abordagem agrega valor prático à geração de respostas sobre governança de dados em saúde.
 
-The objective of this study is to assess whether responses generated with RAG present higher perceived quality than responses generated without RAG in the context of health data governance.
+## Objetivo
 
-## Study Design
+Avaliar se respostas geradas com RAG apresentam maior qualidade percebida do que respostas geradas sem suporte de recuperação documental no contexto da governança de dados em saúde.
 
-The study follows a comparative evaluation design.
+## Desenho do estudo
 
-A set of 30 questions related to health data governance was created. For each question, two responses were generated:
+Foi elaborado um conjunto de 30 perguntas relacionadas à governança de dados em saúde. Para cada pergunta, foram geradas duas respostas:
 
-- one response using Retrieval-Augmented Generation;
-- one response without retrieval support.
+- uma resposta com Retrieval-Augmented Generation;
+- uma resposta sem recuperação documental.
 
-This resulted in 60 responses organized into 30 comparable pairs.
+O processo resultou em 60 respostas organizadas em 30 pares comparáveis.
 
-The responses were evaluated under a double-blind design. Evaluators did not know whether each response had been generated with or without RAG. Within each pair, responses were randomized and presented as alternatives A and B.
+As respostas foram avaliadas em um procedimento duplo-cego. Os avaliadores não sabiam se cada resposta havia sido gerada com ou sem RAG. Dentro de cada par, as respostas foram randomizadas e apresentadas como alternativas A e B.
 
-## Evaluation
+## Avaliação
 
-The evaluation involved three independent evaluators:
+Participaram da avaliação:
 
-- two human experts with experience in health data governance;
-- one automated evaluator following the LLM-as-a-judge paradigm.
+- dois especialistas humanos com experiência em governança de dados em saúde;
+- um avaliador automatizado baseado no paradigma LLM-as-a-judge, utilizando o Claude Opus 4.6.
 
-Each response was assessed using five ordinal Likert-scale dimensions:
+Cada resposta foi avaliada em cinco dimensões ordinais, utilizando escala Likert de 1 a 5:
 
-- Accuracy
-- Completeness
-- Adherence
-- Utility
-- Clarity
+- Acurácia;
+- Completude;
+- Aderência;
+- Utilidade;
+- Clareza.
 
-In addition, for each pair of responses, evaluators indicated a global preference among:
+Para cada par de respostas, os avaliadores também indicaram uma preferência global entre:
 
-- WITH RAG
-- WITHOUT RAG
-- Tie
+- Com RAG;
+- Sem RAG;
+- Empate.
 
-In total, the study produced:
+Ao todo, foram produzidos:
 
-- 900 ordinal judgments;
-- 90 comparative preference judgments.
+- 900 julgamentos ordinais;
+- 90 julgamentos de preferência global.
 
-## Statistical Analysis
+## Análise estatística
 
-Ordinal quality scores were analyzed using cumulative link mixed models (CLMM), with one model fitted for each evaluation dimension. The models estimated the association between the experimental condition and higher Likert-scale ratings.
+As avaliações ordinais foram analisadas por meio de cumulative link mixed models (CLMMs), com um modelo ajustado para cada dimensão. Os modelos estimaram a associação entre a condição experimental e a probabilidade de obtenção de avaliações mais altas na escala Likert.
 
-Global preference judgments were analyzed using a multinomial logistic model to compare preference patterns across evaluators.
+A preferência global foi analisada por meio de regressão logística multinomial, tendo o avaliador como preditor. Como análise de sensibilidade, foi ajustado um modelo adicional com intercepto aleatório por pergunta.
 
-The analysis considered both the direction and magnitude of estimated effects, as well as statistical uncertainty.
+A concordância entre os avaliadores foi examinada utilizando:
 
+- kappa de Cohen ponderado com pesos quadráticos para as dimensões Likert;
+- alfa de Krippendorff ordinal para os três avaliadores em conjunto;
+- kappa nominal para a preferência global;
+- alfa de Krippendorff nominal para a preferência global conjunta.
+
+A interpretação considerou a direção e a magnitude dos efeitos estimados, seus intervalos de confiança e a natureza exploratória do estudo.
+
+## Arquivos do repositório
+
+### `avaliacao_comparativa_all_judges`
+
+Base consolidada contendo as perguntas, as respostas com e sem RAG e as avaliações realizadas pelos dois especialistas humanos e pelo LLM judge.
+
+### `comparativo_experts_llms_judge`
+
+Notebook principal das análises estatísticas comparativas, incluindo os modelos ordinais, a análise de preferência global e as análises de sensibilidade.
+
+### `concordancia_avaliadores_likert`
+
+Tabela com as medidas de concordância das cinco dimensões Likert, incluindo kappas ponderados pareados, alfa de Krippendorff ordinal e respectivos intervalos de confiança.
+
+### `concordancia_avaliadores_pref`
+
+Tabela com as medidas de concordância da preferência global, incluindo kappas nominais pareados, alfa de Krippendorff nominal e respectivos intervalos de confiança.
+
+### `Experts_is_a_judge_human1`
+
+Arquivo utilizado na avaliação das respostas pelo primeiro especialista humano.
+
+### `Experts_is_a_judge_human2`
+
+Arquivo utilizado na avaliação das respostas pelo segundo especialista humano.
+
+### `LLM_is_a_judge_20260408`
+
+Notebook utilizado para executar a avaliação automatizada com o Claude Opus 4.6, incluindo os prompts, parâmetros e procedimentos de avaliação.
+
+### `questions_llms`
+
+Arquivo contendo as perguntas utilizadas no estudo e os dados associados à geração das respostas com e sem RAG.
+
+
+### `material_suplementar_diagnosticos_modelos`
+
+Arquivo contendo todos os materiais suplementares, referenciados no manuscrito.
+
+### `README`
+
+Documento com a descrição do estudo, da organização do repositório e dos principais artefatos disponibilizados.
